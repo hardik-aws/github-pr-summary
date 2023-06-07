@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pull Requests Summary for {{ GITHUB_USERNAME }}/{{ GITHUB_REPONAME }}</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>PR Summary</h1>
+    <p>Here are the PRs for the last week:</p>
+    
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Current Status</th>
+            <th>Author</th>
+            <th>Created Date</th>
+            <th>URL</th>
+        </tr>
+        {% for pr in PULL_REQUESTS %}
+        <tr>
+            <td>{{ pr.title }}</td>
+            <td>{{ pr.state }}</td>
+            <td>{{ pr.user.login }}</td>
+            <td>{{ pr.created_at }}</td>
+            <td><a href="{{ pr.html_url }}">{{ pr.html_url }}</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
